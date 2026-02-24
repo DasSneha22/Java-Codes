@@ -1,0 +1,34 @@
+import java.util.*;
+public class sum {
+    public static int getSum(int n1,int n2,int b){
+      int c = 0;
+      int d1,d2;
+      int net = 0;
+      int i = 0;
+      while(n1>0 || n2>0 || c>0){
+      d1 = n1% 10;
+      d2 = n2% 10;
+      int d = d1 + d2 + c;
+      c = d/b;
+      d = d % b;
+
+      n1 = n1/10;
+      n2 = n2/10;
+      net = net + d*(int)Math.pow(10,i);
+      i++;
+      }
+      return net;
+
+    }
+public static void main(String args[]){
+    Scanner scn = new Scanner(System.in);
+    System.out.println("Enter number 1: ");
+    int x = scn.nextInt();
+    System.out.println("Enter number 2: ");
+    int y = scn.nextInt();
+    System.out.println("Enter base: ");
+    int b = scn.nextInt();
+     System.out.println("The sum is: "+getSum(x,y,b));   
+     scn.close();
+}
+}
