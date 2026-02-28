@@ -1,0 +1,52 @@
+import java.util.*;
+public class barchart {
+    public static void main(String args[])
+    {Scanner scn = new Scanner(System.in);
+         System.out.println("Array 1 is greater than Array 2");
+       System.out.println("Size of 1st array: ");
+        int n1 = scn.nextInt();
+        int[] a = new int[n1];
+        System.out.println("Enter elements:");
+        for(int i=0;i<a.length;i++){
+            a[i] = scn.nextInt();
+        }
+        System.out.println("Size of 2nd array: ");
+        int n2 = scn.nextInt();
+        int[] b = new int[n2];
+        System.out.println("Enter elements:");
+        for(int i=0;i<b.length;i++){
+            b[i] = scn.nextInt();
+        }
+        int n3 = Math.max(n1,n2);
+        int[] sum = new int[n3];
+        int i = a.length - 1;
+        int j = b.length - 1;
+        int k = sum.length - 1;
+        int bor =0;
+        while(k>=0){
+           int d = -bor;
+            if(i>=0){
+            d = d + a[i];
+        }
+            if(j>=0){
+            d = d - b[j];
+        }   
+            if(d<0){
+                bor = 1;
+                d = d + 10;
+            }else{
+                bor = 0;
+            }
+            sum[k] = d;
+            k--;
+            i--;
+            j--;
+        }
+        System.out.print("The difference is:");
+        for(int val:sum){
+            System.out.print(val);
+        }
+
+scn.close();
+}
+}
