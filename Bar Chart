@@ -1,0 +1,37 @@
+import java.util.Scanner;
+public class bar {
+   public static int getMax(int[] arr){
+      int max = arr[0];
+      for(int i=0;i<arr.length;i++){
+         if(arr[i]>max){
+            max = arr[i];
+         }
+      }
+      return max;
+   }
+   public static void main(String args[]){
+    Scanner scn = new Scanner(System.in);
+    int n = scn.nextInt();
+    int[] bar = new int[n];
+    for(int i =0;i<bar.length;i++){
+      bar[i] = scn.nextInt();
+    }
+    //Creation of the bars
+    int longest = getMax(bar);
+  
+    for(int i=0;i<longest;i++){
+      for(int j=0;j<bar.length;j++){
+         if(bar[j] < (longest-i)){
+            System.out.print(" ");
+         }else{
+            System.out.print("*");
+         }
+         System.out.print("\t");
+      }
+      System.out.print("\n");
+
+    }
+
+    scn.close();
+   } 
+}
