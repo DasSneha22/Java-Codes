@@ -1,0 +1,38 @@
+import java.util.*;
+public class ngrele {
+   public static void main(String args[]){
+    Scanner scn = new Scanner(System.in);
+    System.out.println("Enter no. of elemets: ");
+    int n = scn.nextInt();
+    int[] array = new int[n];
+    System.out.println("Enter elemets: ");
+    for(int i =0;i<array.length;i++){
+      array[i] = scn.nextInt();
+    }
+
+   Stack<Integer> st = new Stack<>();
+   int[] nge = new int[array.length];
+   
+   st.push(array[array.length-1]);
+   nge[array.length-1]=-1;
+   for(int i=array.length-2;i>=0;i--){
+   while(st.size()>0 && array[i]>=st.peek()){
+       st.pop();
+   }
+   if(st.size()==0){
+      nge[i]=-1;
+   }else{
+      nge[i]=st.peek();
+   }
+   st.push(array[i]);
+   }
+
+
+   for(int i=0;i<n;i++){
+      System.out.print("\t"+nge[i]);
+   }
+
+
+    scn.close();
+   } 
+}
