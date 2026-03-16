@@ -1,0 +1,70 @@
+import java.util.*;
+public class infix {
+  public static int precendence(char ch ){
+   int x = 0;
+    if(ch=='+'){
+    x = 1;
+   }else if(ch == '-'){
+    x = 1;
+   }else if(ch == '*'){
+    x = 2;
+   }else if(ch == '/'){
+    x = 2;
+   }
+   return x;
+  }
+  public static int operation(int v1,int v2,char opr){
+    int result= 0; 
+    if(opr == '+'){
+    result = v1 + v2;
+     }else if(opr == '-'){
+      result = v1 - v2;
+     }else if(opr == '*'){
+      result = v1 * v2;
+     }else if(opr == '/'){
+      result = v1/v2;
+     }
+     return (result);
+  }
+  public static void main(String args[]){
+    Scanner scn = new Scanner(System.in);
+    System.out.println("Enter the string: ");
+    String eqn = scn.nextLine();
+    Stack<Integer> opnds = new Stack<>();
+    Stack<Character> optr = new Stack<>();
+    for(int i=0;i<eqn.length();i++){
+      char ch = eqn.charAt(i);
+      if(ch == '('){
+          optr.push(ch);
+      }else if(ch == '+' || ch == '-' || ch == '*' || ch == '/'){
+        while(optr.size()>0 && optr.peek() != '(' && precendence(ch)<=precendence(optr.peek())){
+          char operator = optr.pop();
+          int v2 = opnds.pop();
+          int v1 = opnds.pop();
+          int result = operation(v1, v2, operator);
+          opnds.push(result);
+        }
+          optr.push(ch);
+        }else if(ch == ')'){
+        while(optr.peek() != '('){
+        char operator = optr.pop();
+          int v2 = opnds.pop();
+          int v1 = opnds.pop();
+          int result = operation(v1, v2, operator);
+          opnds.push(result); 
+        }
+        optr.pop();
+      }else{
+        opnds.push(ch - '0');
+      }
+    }
+    while(optr.size()>0){
+    int v2 = opnds.pop();
+    int v1 = opnds.pop();
+    char operator = optr.pop();
+    int result = operation(v1, v2, operator);
+    System.out.println(result);
+    }
+  scn.close();
+}  
+}
