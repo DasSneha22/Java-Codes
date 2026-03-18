@@ -1,0 +1,81 @@
+import java.util.Scanner;
+import java.util.Stack;
+public class ppi {
+    public static void main(String args[]){
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Enter the infix expression: ");
+        String line = scn.nextLine();
+        Stack<String> prefix =new Stack<>();
+        Stack<String> postfix = new Stack<>();
+        Stack<Character> operator = new Stack<>();
+        
+        //Evaluation Starts
+        for(int i=0;i<line.length();i++){
+          char ch = line.charAt(i);
+          if(ch == '('){
+           operator.push(ch);
+          }else if(ch == '+' || ch =='-' || ch =='*' || ch=='/' ){
+          while(  operator.size()>0 
+          && operator.peek() != '(' && Precedence(ch)<=Precedence(operator.peek())){
+                char op = operator.pop();
+                String postV2 = postfix.pop();
+                String postV1 = postfix.pop();
+                String postV = postV1 + postV2 + op;
+                postfix.push(postV);
+
+                String preV2 = prefix.pop();
+                String preV1 = prefix.pop();
+                String preV = op + preV1 + preV2 ;
+                prefix.push(preV);
+             }
+             operator.push(ch);  
+          }else if((ch >= '0' && ch<= '9') || (ch >= 'a' && ch<= 'z') || (ch>= 'A' && ch<= 'Z')){
+            postfix.push(""+ch);
+            prefix.push(""+ch);
+          }else if(ch == ')'){
+            while(operator.peek() != '('){
+                char op = operator.pop();
+                String postV2 = postfix.pop();
+                String postV1 = postfix.pop();
+                String postV = postV1 + postV2 + op;
+                postfix.push(postV);
+
+                String preV2 = prefix.pop();
+                String preV1 = prefix.pop();
+                String preV = op + preV1 + preV2 ;
+                prefix.push(preV);
+
+            }
+            operator.pop();
+          }
+        }
+
+    while(operator.size()>0){
+                char op = operator.pop();
+                String postV2 = postfix.pop();
+                String postV1 = postfix.pop();
+                String postV = postV1 + postV2 + op;
+                postfix.push(postV);
+
+                String preV2 = prefix.pop();
+                String preV1 = prefix.pop();
+                String preV = op + preV1 + preV2 ;
+                prefix.push(preV);
+
+            }
+            System.out.println("The postfix expression is: "+postfix.pop());
+            System.out.println("The postfix expression is: "+prefix.pop());
+    scn.close();
+}
+public static int Precedence(char ch){
+    int x=0;
+    if(ch == '+' || ch == '-'){
+        x = 1;
+    }else if(ch == '*' || ch=='/'){
+        x = 2;
+    }else{
+     x=0;
+}
+return x;
+}
+}
