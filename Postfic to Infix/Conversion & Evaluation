@@ -1,1 +1,53 @@
+import java.util.*;
+public class postfix {
+ public static void main(String args[]){
+ Scanner scn = new Scanner(System.in);
+ System.out.println("Enter the user string: ");
+ String eqn = scn.nextLine();
+ Stack<Integer> vs = new Stack<>();
+ Stack<String> is = new Stack<>();
+ Stack<String> ps = new Stack<>();
+ for(int i=0;i<eqn.length();i++){
+    char ch = eqn.charAt(i);
+    if(ch == '+' || ch == '-' || ch == '*' ||ch == '/'){
+       int v2 = vs.pop();
+       int v1 = vs.pop();
+       int value = opreation(v1,v2,ch);
+       vs.push(value);
+       //prefix stack
+       String p2 = ps.pop();
+       String p1 = ps.pop();
+       String preval = ch+""+p1+p2;
+       ps.push(preval);
+       //infix stack
+       String i2 = is.pop();
+       String i1 = is.pop();
+       String inval ="("+i1+ch+i2+")";
+       is.push(inval);
+
+
+    }else {
+        vs.push(ch - '0');
+        is.push(ch + "");
+        ps.push(ch + "");
+ }    
+ }
+    System.out.println(vs.pop());
+    System.out.println(ps.pop());
+    System.out.println(is.pop());
+}   
+public static int opreation(int a,int b,char c){
+    int resu=0;
+    if(c == '+'){
+        resu = a+b;
+    }else if(c == '-'){
+        resu = a-b;
+    }else if(c  == '*'){
+        resu = a*b;
+    }else if(c == '/'){
+        resu = a/b;
+    }
+    return resu;
+}
+}
 
