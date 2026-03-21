@@ -1,0 +1,52 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class mergeover {
+    public static class Pair{
+        int st;
+        int end;
+    };
+    public static void main(String args[]){
+     Scanner scn = new Scanner(System.in);
+     System.out.println("Enter number of sets: ");
+     int n = scn.nextInt();
+     Pair[] set = new Pair[n];
+     Stack<Pair> merge = new Stack<>();
+     for(int i=0;i<n;i++){
+        set[i] = new Pair(); 
+        set[i].st = scn.nextInt();
+         set[i].end = scn.nextInt();
+     }
+     for(int i=0;i<n;i++){
+        for(int j=0;j<n-i-1;j++){
+            if(set[j].st>set[j+1].st){
+                Pair temp = set[j];
+                set[j] = set[j+1];
+                set[j+1] = temp;
+            }
+        }
+     }
+    /* System.out.println( "Sorted Pair is:" );
+     for(int i=0;i<n;i++){
+        System.out.println(set[i].st + " " + set[i].end);
+     }  */
+    merge.push(set[0]);
+     for(int i=1;i<n;i++){
+        if((set[i].st > merge.peek().st) && (set[i].st <= merge.peek().end) ){
+           if((set[i].end>merge.peek().end))
+           { merge.peek().end=set[i].end;}
+        }else{
+            merge.push(set[i]);
+        }
+    }
+    
+   
+    System.out.println("COntents of stack merge: ");
+    while(merge.size() != 0){
+        Pair p = merge.pop();
+        System.out.println(p.st + " "+p.end);
+    }
+    
+     scn.close();
+    }
+}
