@@ -43,9 +43,11 @@ for(int i=top;i>=0;i--){
    push(Arr,10);
    push(Arr,22);
    display(Arr);
+   size(Arr);
    pop(Arr);
    display(Arr);
    peek(Arr);
+   size(Arr);
 
     
 
