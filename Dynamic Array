@@ -1,0 +1,66 @@
+ class brackets {
+static int top = -1;
+//Function to Push elemnet in tack   
+public static int[] push(int arr[],int x){
+ if(top == arr.length - 1){
+   int[] narr = new int[2 * arr.length]; 
+   for(int i=0;i<arr.length;i++){
+      narr[i] = arr[i];
+   }
+   arr = narr;
+   top++;
+   arr[top] = x;
+}
+else{
+    top++;
+   arr[top] = x;
+}
+return arr;
+}
+//Function to Pop ELement from stack
+public static void pop(int arr[]){
+if(top>=0){
+   top--;
+   }else{
+      System.out.println("Stack UNderflow!!");
+   }
+}
+//Function to retrive size of the stack
+public static void size(int arr[]){
+System.out.println("The size of the Stack is: "+(top+1));
+}
+//Retireves the Top element of the stack
+public static void peek(int arr[]){
+if(top>=0){
+   System.out.println("top element: "+arr[top]);
+}else{
+    System.out.println("Stack Empty!!");
+}
+}
+public static void display(int arr[]){
+for(int i=top;i>=0;i--){
+   System.out.print(arr[i] + " ");
+}
+   System.out.print( "\n");
+}
+
+   public static void main(String args[]){
+   int[] Arr = new int[5];
+   Arr = push(Arr,16);
+   Arr = push(Arr,5);
+   Arr = push(Arr,10);
+   Arr = push(Arr,22);
+   Arr = push(Arr,12);
+   Arr = push(Arr,16);
+   display(Arr);
+   size(Arr);
+   pop(Arr);
+   display(Arr);
+   peek(Arr);
+   size(Arr);
+
+    
+
+
+}
+    }
