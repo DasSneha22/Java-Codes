@@ -1,0 +1,26 @@
+import java.util.*;
+public class ValidAnagram {
+    public static boolean IsAnagram(String s,String t){
+        if(s.length() != t.length()){
+           return false;
+        }
+        int[] alphabets = new int[26];
+        
+        for(int i=0;i<s.length();i++){
+        alphabets[s.charAt(i)-'a']++;
+        alphabets[t.charAt(i)-'a']--;
+        }
+
+        for(int i=0;i<alphabets.length;i++){
+         if(alphabets[i] != 0){
+            return false;
+         }
+       }
+       return true;
+    }
+    public static void main(String[] args){
+        String a = "sneha";
+        String b = "hesna";
+        System.out.println("Are the two strings "+a+ " and "+b+ " are Anagram: " + IsAnagram(a, b));
+    }
+}
