@@ -1,0 +1,32 @@
+import java.util.Scanner;
+//abaacdaefaah
+public class Class1 {
+   public static int first = -1;
+   public static int last = -1;
+    public static void findOccurrence(String str,int idx,char s){
+        if(idx == str.length()-1){
+        if(str.charAt(idx) == s){
+            last = idx;
+        }            
+        System.out.println("First index of occurence is: "+first);
+        System.out.print("Last index of occurence is: "+last);
+        return;
+      }  
+     if(str.charAt(idx)==s)
+     { if(first < 0 ){
+        first = idx;
+      }
+        last = idx;
+    }
+    findOccurrence(str, idx+1, s);
+    }
+    public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter the string: ");
+    String str = sc.nextLine();
+    System.out.println("Enter the character to trace occurance: ");
+    char s = sc.next().charAt(0);
+    findOccurrence(str, 0, s);
+    sc.close();
+    }
+}
