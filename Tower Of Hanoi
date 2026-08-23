@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Class1 {
+    public static void TowerofHanoi(int n ,String source,String helper,String destination){
+        if(n == 1){
+            System.out.println("transfer disk "+n+" from "+source+" to "+destination);
+            return;
+        }
+        TowerofHanoi(n-1, source, destination,helper);
+        System.out.println("transfer disk "+n+" from "+source+" to "+destination);
+        TowerofHanoi(n-1, helper,source,destination);
+       
+    }
+    public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter the number of disks: ");
+    int n = sc.nextInt();
+    TowerofHanoi(n, "S", "H", "D");
+    sc.close();
+    }
+}
