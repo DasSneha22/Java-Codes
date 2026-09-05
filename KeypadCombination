@@ -1,0 +1,26 @@
+
+import java.util.Scanner;
+
+class test1{
+   static String[] keypad = {".","abc","def","ghi","jkl","mno","pqrs","tu","vwx","yz"};
+   public static void KeypadCombination(String s,int idx,String Combination){
+        if(idx == s.length())
+         {System.out.println(Combination);
+      return;}
+      char currChar = s.charAt(idx);
+      int mapping = currChar - '0';
+      for(int i=0;i<keypad[mapping].length();i++){
+         KeypadCombination(s, idx+1, Combination+ keypad[mapping].charAt(i));
+      }
+
+   }
+    public static void main(String args[]){
+       Scanner scn = new Scanner(System.in);
+       System.out.println("Enter the keypad combination: ");
+       String s = scn.nextLine();
+       KeypadCombination(s, 0, "");
+      scn.close();
+       
+        }
+          
+    }
